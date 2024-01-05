@@ -359,6 +359,8 @@ html_code = '''
 	overflow: auto;
 	font-family: メイリオ;
 	font-size: 14px;
+    padding: 0 20px; /* 左右に20pxの余白を追加 */
+
 	/* スクロールバーのスタイル */
 	scrollbar-width: thin;
 	scrollbar-color: rgba(155, 155, 155, 0.5) rgba(255, 255, 255, 0.1);
