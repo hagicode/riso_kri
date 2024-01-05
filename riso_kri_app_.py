@@ -108,7 +108,7 @@ def env_graph_show(df,chart_type,upper,lower):
     from plotly.subplots import make_subplots
 
     # figを定義
-    fig = make_subplots(rows=3, cols=1, shared_xaxes=True, vertical_spacing=0.05, row_width=[0.2,0.1, 0.6], x_title="Date")
+    fig = make_subplots(rows=3, cols=1, shared_xaxes=True, vertical_spacing=0.05, row_width=[0.3,0.3, 0.6], x_title="Date")
 
     # Candlestick
     fig.add_trace(
