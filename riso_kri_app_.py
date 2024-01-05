@@ -127,12 +127,12 @@ def env_graph_show(df,chart_type,upper,lower):
     )
 
     fig.add_trace(
-        go.Scatter(x=[df2["Date"].iloc[0],df2["Date"].iloc[-1]], y=[lower,lower], name="-KRI",line = dict(color='red', width=0.1), showlegend=False),
+        go.Scatter(x=[df2["Date"].iloc[0],df2["Date"].iloc[-1]], y=[lower,lower],mode="lines", name="-KRI",line = dict(color='lightsalmon', width=1), showlegend=False),
         row=3, col=1
     )
 
     fig.add_trace(
-        go.Scatter(x=[df2["Date"].iloc[0],df2["Date"].iloc[-1]], y=[upper,upper], name="+KRI",line = dict(color='red', width=0.1), showlegend=False),
+        go.Scatter(x=[df2["Date"].iloc[0],df2["Date"].iloc[-1]], y=[upper,upper],mode="lines", name="+KRI",line = dict(color='lightsalmon', width=1), showlegend=False),
         row=3, col=1
     )
 
