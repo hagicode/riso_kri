@@ -117,7 +117,7 @@ def env_graph_show(df,chart_type,upper,lower):
 
     # Volume
     fig.add_trace(
-        go.Bar(x=df2["Date"], y=df2["Volume"], name="Volume",marker_color='indianred', showlegend=False),
+        go.Bar(x=df2["Date"], y=df2["Volume"], name="Volume",marker_color='rgb(237, 100, 90)', showlegend=False),
         row=2, col=1)
 
     # MAER
