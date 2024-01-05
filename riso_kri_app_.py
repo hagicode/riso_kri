@@ -117,7 +117,7 @@ def env_graph_show(df,chart_type,upper,lower):
 
     # Volume
     fig.add_trace(
-        go.Bar(x=df2["Date"], y=df2["Volume"], name="Volume",color="red", showlegend=False),
+        go.Bar(x=df2["Date"], y=df2["Volume"], name="Volume",marker_color='indianred', showlegend=False),
         row=2, col=1)
 
     # MAER
@@ -127,12 +127,12 @@ def env_graph_show(df,chart_type,upper,lower):
     )
 
     fig.add_trace(
-        go.Scatter(x=[df2["Date"].iloc[0],df2["Date"].iloc[-1]], y=[lower,lower], name="-KRI",line = dict(color="red",dash = "dot"), showlegend=False),
+        go.Scatter(x=[df2["Date"].iloc[0],df2["Date"].iloc[-1]], y=[lower,lower], name="-KRI",line = dict(color='firebrick', width=4, dash='dot'), showlegend=False),
         row=3, col=1
     )
 
     fig.add_trace(
-        go.Scatter(x=[df2["Date"].iloc[0],df2["Date"].iloc[-1]], y=[upper,upper], name="+KRI",line = dict(color="green",dash = "dot"), showlegend=False),
+        go.Scatter(x=[df2["Date"].iloc[0],df2["Date"].iloc[-1]], y=[upper,upper], name="+KRI",line = dict(color='firebrick', width=4, dash='dot'), showlegend=False),
         row=3, col=1
     )
 
