@@ -190,7 +190,6 @@ def env_graph_show(df,chart_type,upper,lower):
     if chart_type == "1d":
         gap_resample = df2.resample("1D", on='Date').max()
         timegap = gap_resample[gap_resample["Open"].isnull()].index.to_list()
-        fig.update_xaxes(range = [df2["Date"].iloc[0],df2["Date"].iloc[-1]],rangebreaks=[dict(values= timegap)])
 
         fig.update_layout(
             xaxis=dict(
@@ -221,12 +220,14 @@ def env_graph_show(df,chart_type,upper,lower):
                 type="date"
             )
         )
+        fig.update_xaxes(range = [df2["Date"].iloc[0],df2["Date"].iloc[-1]],rangebreaks=[dict(values= timegap)])
+
     else:#日足以外
+        fig.update(layout_xaxis_rangeslider_visible=False)
         fig.update_xaxes(rangebreaks=[
             dict(bounds=[15, 9], pattern="hour"),            # Remove non-trading hours
             dict(bounds=["sat", "mon"]),                        # Remove weekends
         ])
-        fig.update(layout_xaxis_rangeslider_visible=False)
 
     #fig.show()
     return fig
