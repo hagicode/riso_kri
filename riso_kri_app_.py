@@ -360,8 +360,8 @@ code_Alert = f.read()
 # f = open("code_Alert.txt", 'r')
 # code_Alert = f.read()
 
+st.markdown('<p style="font-family:メイリオ; font-size: 14px; font-weight: bold;">"Trading Viewの理想乖離エンベロープのインジケータ生成アプリ"</p>', unsafe_allow_html=True)
 
-st.title("Trading Viewの理想乖離エンベロープのインジケータ生成アプリ")
 
 html_code = '''
 <style type="text/css">
