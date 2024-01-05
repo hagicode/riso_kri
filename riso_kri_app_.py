@@ -326,7 +326,7 @@ pio.templates.default = "plotly"
 
 
 #github
-st.set_page_config(layout="wide")
+st.set_page_config(layout="centered")
 
 #code材料
 f = open("files/code_header.txt", 'r')
