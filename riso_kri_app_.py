@@ -224,7 +224,7 @@ def env_graph_show(df,chart_type,upper,lower):
 
     else:#日足以外
         fig.update(layout_xaxis_rangeslider_visible=False)
-        fig.update_xaxes(rangebreaks=[
+        fig.update_xaxes(range = [df2["Date"].iloc[0],df2["Date"].iloc[-1]],rangebreaks=[
             dict(bounds=[15, 9], pattern="hour"),            # Remove non-trading hours
             dict(bounds=["sat", "mon"]),                        # Remove weekends
         ])
