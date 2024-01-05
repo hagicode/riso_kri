@@ -2,10 +2,6 @@ import streamlit as st
 import streamlit.components.v1 as stc
 import pandas as pd
 import numpy as np
-from st_aggrid import AgGrid
-from st_aggrid.grid_options_builder import GridOptionsBuilder
-from st_aggrid.shared import JsCode
-from streamlit_option_menu import option_menu
 import glob
 import pathlib
 import os
@@ -21,12 +17,6 @@ from yahoo_finance_api2.exceptions import YahooFinanceError
 import pandas as pd
 
 
-#チャート画像作る時に必要なもの
-import mplfinance as mpf
-import matplotlib
-matplotlib.use('agg')
-import matplotlib.pyplot as plt #描画ライブラリ
-import japanize_matplotlib
 
 #画像編集に必要なもの
 from PIL import Image
