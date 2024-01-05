@@ -4,3 +4,4 @@ Pillow==9.4.0
 plotly==5.15.0
 streamlit==1.29.0
 yahoo-finance-api2==0.0.12
+xlrd >= 2.0.1
