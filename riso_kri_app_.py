@@ -359,22 +359,21 @@ html_code = '''
 	overflow: auto;
 	font-family: メイリオ;
 	font-size: 14px;
-    padding: 0 20px; /* 左右に20pxの余白を追加 */
-
+	padding: 0 20px;
 	/* スクロールバーのスタイル */
 	scrollbar-width: thin;
-	scrollbar-color: rgba(155, 155, 155, 0.5) rgba(255, 255, 255, 0.1);
+	scrollbar-color: rgba(0, 0, 0, 0.5) rgba(200, 200, 200, 0.5);
 }
 #QandA-1::-webkit-scrollbar {
 	width: 12px;
 }
 #QandA-1::-webkit-scrollbar-track {
-	background: rgba(255, 255, 255, 0.1);
+	background: rgba(200, 200, 200, 0.5);
 }
 #QandA-1::-webkit-scrollbar-thumb {
-	background-color: rgba(155, 155, 155, 0.5);
+	background-color: rgba(0, 0, 0, 0.5);
 	border-radius: 20px;
-	border: 3px solid rgba(255, 255, 255, 0.1);
+	border: 3px solid rgba(200, 200, 200, 0.5);
 }
 #QandA-1 h2 {
 
@@ -401,6 +400,7 @@ html_code = '''
 	margin-right: 8px;
 }
 </style>
+
 
 <div id="QandA-1">
 	<h2>Trading Viewの理想乖離エンベロープのインジケータ生成アプリ</h2>
