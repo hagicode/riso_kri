@@ -360,7 +360,7 @@ code_Alert = f.read()
 # f = open("code_Alert.txt", 'r')
 # code_Alert = f.read()
 
-st.markdown('<p style="font-family:メイリオ; font-size: 18px; font-weight: bold;">Trading Viewの理想乖離エンベロープのインジケータ生成アプリ</p>', unsafe_allow_html=True)
+st.markdown('<p style="font-family:メイリオ; font-size: 20px; font-weight: bold;">Trading Viewの理想乖離エンベロープのインジケータ生成アプリ</p>', unsafe_allow_html=True)
 
 
 html_code = '''
@@ -415,7 +415,6 @@ html_code = '''
 
 
 <div id="QandA-1">
-	<h2>Trading Viewの理想乖離エンベロープのインジケータ生成アプリ</h2>
 	<h3>アプリの背景</h3>
 	<dl>
 		<dt>エンベロープとは？</dt>
