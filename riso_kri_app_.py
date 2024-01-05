@@ -122,7 +122,7 @@ def env_graph_show(df,chart_type,upper,lower):
 
     # MAER
     fig.add_trace(
-        go.Scatter(x=df2["Date"], y=df2["MAER"], name="KRI",color="orange", showlegend=False),
+        go.Scatter(x=df2["Date"], y=df2["MAER"], name="KRI",marker_color = "orange", showlegend=False),
         row=3, col=1
     )
 
