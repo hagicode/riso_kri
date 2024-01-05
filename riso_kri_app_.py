@@ -151,7 +151,8 @@ def env_graph_show(df,chart_type,upper,lower):
             "text": chart_type +"チャート",
             "y":0.9,
             "x":0.5,
-        }
+        },
+        bargap=0
     )
 
     # エンベロープ
