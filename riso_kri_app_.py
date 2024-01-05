@@ -418,7 +418,7 @@ html_code = '''
 		<dd>Trading Viewは複数の時間足を並べて表示できるため、マルチタイムフレーム(MTF)で株価の分析が容易になります。
         <br>例として短期足での乖離が大きくても、長期足ではそれほど大きな乖離ではないなどが確認できます。</dd>
 	</dl>
-    <h3><a href="https://jp.tradingview.com/?aff_id=127468" target="_blank">まだTrading Viewの無料アカウントを作っていない方はこちらからどうぞ！</a></h3>
+    <h3><a href="https://jp.tradingview.com/?aff_id=127468" target="_blank" rel="noopener noreferrer">まだTrading Viewの無料アカウントを作っていない方はこちらからどうぞ！</a></h3>
 	<h3>本アプリの機能</h3>
 	<dl>
 		<dt>①Trading Viewのエンベロープインジケータの自動生成</dt>
