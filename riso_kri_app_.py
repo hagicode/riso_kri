@@ -117,22 +117,22 @@ def env_graph_show(df,chart_type,upper,lower):
 
     # Volume
     fig.add_trace(
-        go.Bar(x=df2["Date"], y=df2["Volume"], name="Volume", showlegend=False),
+        go.Bar(x=df2["Date"], y=df2["Volume"], name="Volume",color="red", showlegend=False),
         row=2, col=1)
 
     # MAER
     fig.add_trace(
-        go.Scatter(x=df2["Date"], y=df2["MAER"], name="KRI", showlegend=False),
+        go.Scatter(x=df2["Date"], y=df2["MAER"], name="KRI",color="orange", showlegend=False),
         row=3, col=1
     )
 
     fig.add_trace(
-        go.Scatter(x=[df2["Date"].iloc[0],df2["Date"].iloc[-1]], y=[lower,lower], name="-KRI", showlegend=False),
+        go.Scatter(x=[df2["Date"].iloc[0],df2["Date"].iloc[-1]], y=[lower,lower], name="-KRI",line = dict(color="red",dash = "dot"), showlegend=False),
         row=3, col=1
     )
 
     fig.add_trace(
-        go.Scatter(x=[df2["Date"].iloc[0],df2["Date"].iloc[-1]], y=[upper,upper], name="+KRI", showlegend=False),
+        go.Scatter(x=[df2["Date"].iloc[0],df2["Date"].iloc[-1]], y=[upper,upper], name="+KRI",line = dict(color="green",dash = "dot"), showlegend=False),
         row=3, col=1
     )
 
@@ -168,24 +168,6 @@ def env_graph_show(df,chart_type,upper,lower):
     # y軸名を定義
     fig.update_yaxes(title_text="株価", row=1, col=1)
     fig.update_yaxes(title_text="出来高", row=2, col=1)
-
-    # 不要な日付を非表示にする
-    # fig.update_xaxes(
-    #     rangebreaks=[dict(values=d_breaks)]
-    # )
-    # import jpholiday
-    # d_all = pd.date_range(start=df2['Date'].iloc[0],end=df2['Date'].iloc[-1])
-    # holidays = [d.strftime('%Y-%m-%d') for d in d_all if jpholiday.is_holiday(d) ]
-
-    # if chart_type == "1hour":#1hour以外はタグとして正常に動く
-    #     tag = "H"
-    #     dvalue = 60*60*1000
-    # else:
-    #     tag = chart_type
-
-    # gap_resample = df2.resample(tag, on='Date').max()
-    # timegap = gap_resample[gap_resample["Open"].isnull()].index.to_list()
-    # fig.update_xaxes(rangebreaks=[dict(values= timegap,dvalue=dvalue)])
 
     if chart_type == "1d":
         gap_resample = df2.resample("1D", on='Date').max()
