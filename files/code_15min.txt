@@ -1,0 +1,7 @@
+
+
+ma_15min = request.security(syminfo.tickerid, '15', ta.sma(close, length), barmerge.gaps_on)
+upper_15min = ma_15min * (1 + upper_15min_data/100)
+lower_15min = ma_15min * (1 + lower_15min_data/100)
+plot(is_res("15") ? upper_15min : na, color=color.red, title="15分足乖離上限")
+plot(is_res("15") ? lower_15min : na, color=color.green, title="15分足乖離下限")

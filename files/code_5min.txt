@@ -1,0 +1,7 @@
+
+
+ma_5min = request.security(syminfo.tickerid, '5', ta.sma(close, length), barmerge.gaps_on)
+upper_5min = ma_5min * (1 + upper_5min_data/100)
+lower_5min = ma_5min * (1 + lower_5min_data/100)
+plot(is_res("5") ? upper_5min : na, color=color.red, title="5分足乖離上限")
+plot(is_res("5") ? lower_5min : na, color=color.green, title="5分足乖離下限")

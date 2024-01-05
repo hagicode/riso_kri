@@ -1,0 +1,7 @@
+
+
+ma_day = request.security(syminfo.tickerid, 'D', ta.sma(close, length), barmerge.gaps_on)
+upper_day = ma_day * (1 + upper_1day_data/100)
+lower_day = ma_day * (1 + lower_1day_data/100)
+plot(is_res("D") ? upper_day : na, color=color.red, title="日足乖離上限")
+plot(is_res("D") ? lower_day : na, color=color.green, title="日足乖離下限")

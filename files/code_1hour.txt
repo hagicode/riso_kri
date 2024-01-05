@@ -1,0 +1,8 @@
+
+
+ma_hour = request.security(syminfo.tickerid, '60', ta.sma(close, length), barmerge.gaps_on)
+upper_hour = ma_hour * (1 + upper_1hour_data/100)
+lower_hour = ma_hour * (1 + lower_1hour_data/100)
+plot(is_res("60") ? upper_hour : na, color=color.red, title="1時間足乖離上限")
+plot(is_res("60") ? lower_hour : na, color=color.green, title="1時間足乖離下限")
+

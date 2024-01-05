@@ -1,0 +1,17 @@
+
+
+// Alert
+alertcondition(ta.crossover(close, upper_1min), title="1分足乖離上限", message="1分足乖離上限")
+alertcondition(ta.crossunder(close, lower_1min), title="1分足乖離下限", message="1分足乖離下限")
+
+alertcondition(ta.crossover(close, upper_5min), title="5分足乖離上限", message="5分足乖離上限")
+alertcondition(ta.crossunder(close, lower_5min), title="5分足乖離下限", message="5分足乖離下限")
+
+alertcondition(ta.crossover(close, upper_15min), title="15分足乖離上限", message="15分足乖離上限")
+alertcondition(ta.crossunder(close, lower_15min), title="15分足乖離下限", message="15分足乖離下限")
+
+alertcondition(ta.crossover(close, upper_hour), title="1時間足乖離上限", message="1時間足乖離上限")
+alertcondition(ta.crossunder(close, lower_hour), title="1時間足乖離下限", message="1時間足乖離下限")
+
+alertcondition(ta.crossover(close, upper_day), title="日足乖離上限", message="日足乖離上限")
+alertcondition(ta.crossunder(close, lower_day), title="日足乖離下限", message="日足乖離下限")

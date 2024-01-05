@@ -1,0 +1,7 @@
+
+
+ma_1min = request.security(syminfo.tickerid, '1', ta.sma(close, length), barmerge.gaps_on)
+upper_1min = ma_1min * (1 + upper_1min_data/100)
+lower_1min = ma_1min * (1 + lower_1min_data/100)
+plot(is_res("1") ? upper_1min : na, color=color.red, title="1分足乖離上限")
+plot(is_res("1") ? lower_1min : na, color=color.green, title="1分足乖離下限")
