@@ -351,22 +351,35 @@ f = open("files/code_Alert.txt", 'r')
 code_Alert = f.read()
 
 
-html_code ='''
+html_code = '''
 <style type="text/css">
-<!--
 #QandA-1 {
 	width: 100%;
-    height: 1000px; /* スクロール領域の高さを設定 */
-	overflow: auto; /* スクロール機能を追加 */
+	height: 1000px;
+	overflow: auto;
 	font-family: メイリオ;
-	font-size: 14px; /*全体のフォントサイズ*/
+	font-size: 14px;
+	/* スクロールバーのスタイル */
+	scrollbar-width: thin;
+	scrollbar-color: rgba(155, 155, 155, 0.5) rgba(255, 255, 255, 0.1);
+}
+#QandA-1::-webkit-scrollbar {
+	width: 12px;
+}
+#QandA-1::-webkit-scrollbar-track {
+	background: rgba(255, 255, 255, 0.1);
+}
+#QandA-1::-webkit-scrollbar-thumb {
+	background-color: rgba(155, 155, 155, 0.5);
+	border-radius: 20px;
+	border: 3px solid rgba(255, 255, 255, 0.1);
 }
 #QandA-1 h2 {
 
 }
 #QandA-1 dt {
-	background: #444; /* 「Q」タイトルの背景色 */
-	color: #fff; /* 「Q」タイトルの文字色 */
+	background: #444;
+	color: #fff;
 	padding: 8px;
 	border-radius: 2px;
 }
@@ -385,8 +398,6 @@ html_code ='''
 	font-weight: bold;
 	margin-right: 8px;
 }
-
--->
 </style>
 
 <div id="QandA-1">
