@@ -357,7 +357,7 @@ stc.html(
 <!--
 #QandA-1 {
 	width: 100%;
-    overflow: auto;
+    overflow: scroll;
 	font-family: メイリオ;
 	font-size: 14px; /*全体のフォントサイズ*/
 }
