@@ -1,0 +1,11 @@
+
+// © hagi_code
+
+//@version=5
+indicator('MultiTF-Envelope_symbols', overlay=true)
+
+//multi timeframe envelope
+length = input(25, title="SMA期間")
+
+src = close
+is_res(x) => timeframe.period == x
