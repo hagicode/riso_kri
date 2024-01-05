@@ -438,6 +438,7 @@ html_code = '''
 </div>
 '''
 stc.html(html_code,height=1200)
+st.write("まだTrading Viewの無料アカウントを作っていない方は[こちらからどうぞ！](https://jp.tradingview.com/?aff_id=127468)")
 
 
 # st.title("Trading Viewの理想乖離エンベロープのインジケータ生成アプリ")
