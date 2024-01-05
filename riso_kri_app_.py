@@ -351,13 +351,13 @@ f = open("files/code_Alert.txt", 'r')
 code_Alert = f.read()
 
 
-stc.html(
-'''
+html_code ='''
 <style type="text/css">
 <!--
 #QandA-1 {
 	width: 100%;
-    overflow: scroll;
+	height: 300px; /* スクロール領域の高さを設定 */
+	overflow: scroll; /* スクロール機能を追加 */
 	font-family: メイリオ;
 	font-size: 14px; /*全体のフォントサイズ*/
 }
@@ -423,9 +423,8 @@ stc.html(
 
 	</dl>
 </div>
-''',
-height=1200,#設定しないと埋まる
-)
+'''
+stc.html(html_code,height=1200)
 
 
 # st.title("Trading Viewの理想乖離エンベロープのインジケータ生成アプリ")
