@@ -356,7 +356,7 @@ html_code ='''
 <!--
 #QandA-1 {
 	width: 100%;
-    height: 300px; /* スクロール領域の高さを設定 */
+    height: 1000px; /* スクロール領域の高さを設定 */
 	overflow: auto; /* スクロール機能を追加 */
 	font-family: メイリオ;
 	font-size: 14px; /*全体のフォントサイズ*/
@@ -424,7 +424,7 @@ html_code ='''
 	</dl>
 </div>
 '''
-stc.html(html_code,height=330)
+stc.html(html_code,height=1200)
 
 
 # st.title("Trading Viewの理想乖離エンベロープのインジケータ生成アプリ")
