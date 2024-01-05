@@ -331,25 +331,37 @@ st.set_page_config(layout="centered")
 #code材料
 f = open("files/code_header.txt", 'r')
 code_header = f.read()
-
 f = open("files/code_1min.txt", 'r')
 code_1min = f.read()
-
 f = open("files/code_5min.txt", 'r')
 code_5min = f.read()
-
 f = open("files/code_15min.txt", 'r')
 code_15min = f.read()
-
 f = open("files/code_1hour.txt", 'r')
 code_1hour = f.read()
-
 f = open("files/code_1day.txt", 'r')
 code_1day = f.read()
-
 f = open("files/code_Alert.txt", 'r')
 code_Alert = f.read()
 
+#Google Colab
+# f = open("code_header.txt", 'r')
+# code_header = f.read()
+# f = open("code_1min.txt", 'r')
+# code_1min = f.read()
+# f = open("code_5min.txt", 'r')
+# code_5min = f.read()
+# f = open("code_15min.txt", 'r')
+# code_15min = f.read()
+# f = open("code_1hour.txt", 'r')
+# code_1hour = f.read()
+# f = open("code_1day.txt", 'r')
+# code_1day = f.read()
+# f = open("code_Alert.txt", 'r')
+# code_Alert = f.read()
+
+
+st.title("Trading Viewの理想乖離エンベロープのインジケータ生成アプリ")
 
 html_code = '''
 <style type="text/css">
@@ -438,7 +450,7 @@ html_code = '''
 </div>
 '''
 stc.html(html_code,height=1200)
-st.write("まだTrading Viewの無料アカウントを作っていない方は[こちらからどうぞ！](https://jp.tradingview.com/?aff_id=127468)")
+# st.write("まだTrading Viewの無料アカウントを作っていない方は[こちらからどうぞ！](https://jp.tradingview.com/?aff_id=127468)")
 
 
 # st.title("Trading Viewの理想乖離エンベロープのインジケータ生成アプリ")
