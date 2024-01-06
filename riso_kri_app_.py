@@ -580,7 +580,7 @@ if 'submitted' in st.session_state:
     #④index名をdateに変更する。
 
     ###①data部分を作成###
-    df_dev_stack = pd.DataFrame(df_dev_.stack()).T
+    df_dev_stack = pd.DataFrame(df_dev.stack()).T
     date = datetime.datetime.now().date()
     ds1 = pd.DataFrame([symbols,name],index=['銘柄コード','銘柄名']).T
     ds2 = pd.DataFrame(df_dev.stack()).T
