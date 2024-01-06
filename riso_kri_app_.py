@@ -603,7 +603,10 @@ df_one_data = pd.DataFrame(data=ds.iloc[0].tolist(),index = mult_index).T.rename
 
 ##過去データと結合
 df_all_old = pd.read_csv("files/history.csv",index_col=0, header=[0, 1],encoding = "cp932")
-df_all_new = pd.concat([df_all_old,df_one_data],axis=0)
-df_all_new.to_csv("files/history.csv",encoding="cp932")
+if df_all_old.iloc[-1] != df_one_data.iloc[-1]:
+    df_all_new = pd.concat([df_all_old,df_one_data],axis=0)
+    df_all_new.to_csv("files/history.csv",encoding="cp932")
+else:
+    df_all_new = df_all_old.copy()
 
 st.write(df_all_new)
