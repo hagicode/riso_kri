@@ -581,7 +581,7 @@ if 'submitted' in st.session_state:
 
 ###①data部分を作成###
 df_dev_stack = pd.DataFrame(df_dev.stack()).T
-ds1 = pd.DataFrame([symbol,name],index=['銘柄コード','銘柄名']).T
+ds1 = pd.DataFrame([symbols,name],index=['銘柄コード','銘柄名']).T
 ds2 = pd.DataFrame(df_dev.stack()).T
 ds = pd.concat([ds1,ds2],axis=1)
 
