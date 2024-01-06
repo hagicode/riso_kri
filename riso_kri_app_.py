@@ -604,3 +604,5 @@ df_one_data = pd.DataFrame(data=ds.iloc[0].tolist(),index = mult_index).T.rename
 df_all_old = pd.read_csv("files/history.csv",index_col=0, header=[0, 1],encoding = "cp932")
 df_all_new = pd.concat([df_all_old,df_one_data],axis=0)
 df_all_new.to_csv("files/history.csv",encoding="cp932")
+
+st.write(df_all_new)
