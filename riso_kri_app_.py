@@ -573,3 +573,34 @@ if 'submitted' in st.session_state:
     code_filename =  "EnvCode_" +symbols + "_" + name + ".txt"
     st.download_button(label="コードをダウンロード",file_name = code_filename, data = coding_data,mime="text/plain")
     st.code(coding_data)
+    
+#①data部分を作成(stackで必要情報を1行にまとめる。)/indexを0としてconcatで結合
+#②multiindexを作成（最終的にはcol）
+#③data,multiindexを用いてデータフレームを作る。
+#④index名をdateに変更する。
+
+###①data部分を作成###
+df_dev_stack = pd.DataFrame(df_dev.stack()).T
+ds1 = pd.DataFrame([symbol,name],index=['銘柄コード','銘柄名']).T
+ds2 = pd.DataFrame(df_dev.stack()).T
+ds = pd.concat([ds1,ds2],axis=1)
+
+###②multiindexを作成（最終的にはcol）###
+col11=['銘柄','銘柄']
+col12=['銘柄コード','銘柄名']
+col21=df_dev.stack().reset_index()["level_0"].tolist()
+col22=df_dev.stack().reset_index()["level_1"].tolist()
+
+multicol1 = col11+col21
+multicol2 = col12+col22
+df_multicols = pd.DataFrame([multicol1,multicol2]).T
+mult_index = pd.MultiIndex.from_frame(df_multicols)
+
+###③data,multiindexを用いてデータフレームを作る。###
+###④index名をdateに変更する。###
+df_one_data = pd.DataFrame(data=ds.iloc[0].tolist(),index = mult_index).T.rename(index= {0:date})
+
+##過去データと結合
+df_all_old = pd.read_csv("files/history.csv",index_col=0, header=[0, 1],encoding = "cp932")
+df_all_new = pd.concat([df_all_old,df_one_data],axis=0)
+df_all_new.to_csv("files/history.csv",encoding="cp932")
