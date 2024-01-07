@@ -665,9 +665,11 @@ if 'submitted' in st.session_state:
     df_all_old = df_all_old.iloc[:,:22].fillna('')
     df_all_old["銘柄","銘柄コード"] =  df_all_old["銘柄","銘柄コード"].astype("string")
     
-    #重複してしまった行を消す
+    # spreadsheetの読込み時点で重複してしまった行を消す。
+    # dataframeに直し試すと形式差のエラーでうまく削除できなかった。最終行は消せないが苦肉の策。
+    # と思ったが修正できておらず。
     if (df_all_old.shift(1).iloc[-1] == df_all_old.iloc[-1]).all() : 
-	st.write("True")
+        st.write("True")
         df_all_old = df_all_old.iloc[:-1]
         
     ##過去データと結合
