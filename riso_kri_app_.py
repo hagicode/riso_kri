@@ -64,15 +64,11 @@ def connect_to_gsheet():
 
     return gsheet_connector
 
-def overwrite_gsheet_with_df(gsheet_connector, df: pd.DataFrame):
-    # Convert the DataFrame to a list of lists
-    data = df.values.tolist()
-
-    # Write the new data to the sheet
-    gsheet_connector.values().update(
+def add_row_to_gsheet(gsheet_connector, row):
+    gsheet_connector.values().append(
         spreadsheetId=SHEET_ID,
-        range=f"{SHEET_NAME}!A1",
-        body=dict(values=data),
+        range=f"{SHEET_NAME}!A:C",
+        body=dict(values=row),
         valueInputOption="USER_ENTERED",
     ).execute()
 
@@ -671,10 +667,9 @@ if 'submitted' in st.session_state:
     #df_all_old = pd.read_csv("files/history.csv",index_col=0, header=[0, 1],encoding = "cp932")
     if df_all_old.iloc[-1].tolist() != df_one_data.iloc[-1].tolist():
         df_all_new = pd.concat([df_all_old,df_one_data],axis=0)
-        
-        #overwrite_gsheet_with_df(gsheet_connector, df_all_new)
+        add_row_to_gsheet(gsheet_connector, [df_one_data.loc[0].tolist()])
+
     else:
         df_all_new = df_all_old.copy()
 
     st.write(df_all_new)
-    overwrite_gsheet_with_df(gsheet_connector, df_all_new)
