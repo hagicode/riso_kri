@@ -8,3 +8,7 @@ xlrd==2.0.1
 shillelagh==1.2.14
 st-gsheets-connection
 pyparsing==3.1.1
+google_auth_httplib2
+httplib2
+google-auth
+google-api-python-client
