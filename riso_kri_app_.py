@@ -662,7 +662,7 @@ if 'submitted' in st.session_state:
     #読み取りだけのもの
     conn = st.connection("gsheets", type=GSheetsConnection) 
     df_all_old = conn.read(spreadsheet=url,index_col=0,header=[0,1])
-    df_all_old = df_all_old.iloc[:,:21].fillna('')
+    df_all_old = df_all_old.iloc[:,:22].fillna('')
     ##過去データと結合
     #df_all_old = pd.read_csv("files/history.csv",index_col=0, header=[0, 1],encoding = "cp932")
 
