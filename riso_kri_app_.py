@@ -667,6 +667,7 @@ if 'submitted' in st.session_state:
     
     #重複してしまった行を消す
     if (df_all_old.shift(1).iloc[-1] == df_all_old.iloc[-1]).all() : 
+	st.write("True")
         df_all_old = df_all_old.iloc[:-1]
         
     ##過去データと結合
