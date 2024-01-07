@@ -678,7 +678,7 @@ if 'submitted' in st.session_state:
     if df_all_old.iloc[-1].tolist() != df_one_data.iloc[-1].tolist():
         df_all_new = pd.concat([df_all_old,df_one_data],axis=0)
         
-        overwrite_gsheet_with_df(gsheet_connector, df_all_new)
+        #overwrite_gsheet_with_df(gsheet_connector, df_all_new)
     else:
         df_all_new = df_all_old.copy()
 
