@@ -139,8 +139,8 @@ def cal_data_min(symbols,chart_type):
     lower = round((m-2*s),3)
     upper = round((m+2*s),3)
 
-    df2["upper"] = df2["sma25"] + df2["sma25"] * upper/100
-    df2["lower"] = df2["sma25"] - df2["sma25"] * lower/100
+    df2["upper"] = df2["sma25"] + df2["sma25"] * abs(upper)/100
+    df2["lower"] = df2["sma25"] - df2["sma25"] * abs(lower)/100
 
     return std , upper , lower, df2
 
