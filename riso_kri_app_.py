@@ -643,7 +643,7 @@ if 'submitted' in st.session_state:
 
     ###③data,multiindexを用いてデータフレームを作る。###
     ###④index名をdateに変更する。###
-    df_one_data = pd.DataFrame(data=ds.iloc[0].tolist(),index = mult_index).T.rename(index= {0:date})
+    df_one_data = pd.DataFrame(data=ds.iloc[0].tolist(),index = mult_index).T.rename(index= {0:date}).fillna('')
 
     ####gsheetからデータ取得###
     ##https://qiita.com/moomin_moomin/items/bc7a2250313549b2e115
