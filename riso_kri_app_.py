@@ -511,13 +511,15 @@ html_code = '''
         <br>　時間足毎にも変わるため注意してください。（例：三菱商事 1/1分割）</dd>
 
 	</dl>
+    <h3><a href="https://note.com/embed/notes/n0e8d873e5b4b" target="_blank" rel="noopener noreferrer">アプリのデモ動画はこちらから見れます。</a></h3>
+
 </div>
 '''
 stc.html(html_code,height=1200)
 note_iframe = '''
 <iframe class="note-embed" src="https://note.com/embed/notes/n0e8d873e5b4b" style="border: 0; display: block; max-width: 99%; width: 494px; padding: 0px; margin: 10px 0px; position: static; visibility: visible;" height="400"></iframe><script async src="https://note.com/scripts/embed.js" charset="utf-8"></script>
 '''
-st.write("デモ動画は[こちら]から見れます。(https://note.com/embed/notes/n0e8d873e5b4b)")
+
 #stc.iframe(note_iframe)
 
 # st.write("まだTrading Viewの無料アカウントを作っていない方は[こちらからどうぞ！](https://jp.tradingview.com/?aff_id=127468)")
