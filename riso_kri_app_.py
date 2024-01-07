@@ -264,7 +264,7 @@ def coding_process(_symbols,_N_list,_N_true):
     dict_img = {}#各figデータを格納
 
     coding_data = code_header.replace("symbols",str(symbols))
-
+    code_Alert = code_Alert_header
     #プログレスバー
     progress_text = "処理中"
     my_bar = st.progress(0, text=progress_text)
@@ -285,6 +285,7 @@ def coding_process(_symbols,_N_list,_N_true):
                 df_dev.loc["1分足"]=[deviation, upper, lower,int(len(df__))]
                 dict_img.update({N_list[n]:env_graph_show(df__,N_list[n],upper,lower)})
                 coding_data = coding_data + code_1min.replace("upper_1min_data",str(upper)).replace("lower_1min_data",str(lower))
+                code_Alert = code_Alert + code_Alert_1min
             else:
                 pass
 
@@ -302,6 +303,7 @@ def coding_process(_symbols,_N_list,_N_true):
                 dict_img.update({N_list[n]:env_graph_show(df__,N_list[n],upper,lower)})
 
                 coding_data = coding_data + code_5min.replace("upper_5min_data",str(upper)).replace("lower_5min_data",str(lower))
+                code_Alert = code_Alert + code_Alert_5min
             else:
                 pass
 
@@ -320,6 +322,7 @@ def coding_process(_symbols,_N_list,_N_true):
                 dict_img.update({N_list[n]:env_graph_show(df__,N_list[n],upper,lower)})
 
                 coding_data = coding_data + code_15min.replace("upper_15min_data",str(upper)).replace("lower_15min_data",str(lower))
+                code_Alert = code_Alert + code_Alert_15min
             else:
                 pass
 
@@ -336,6 +339,7 @@ def coding_process(_symbols,_N_list,_N_true):
                 dict_img.update({N_list[n]:env_graph_show(df__,N_list[n],upper,lower)})
 
                 coding_data = coding_data + code_1hour.replace("upper_1hour_data",str(upper)).replace("lower_1hour_data",str(lower))
+                code_Alert = code_Alert + code_Alert_1hour
             else:
                 pass
 
@@ -351,6 +355,7 @@ def coding_process(_symbols,_N_list,_N_true):
                 df_dev.loc["日足"]=[deviation, upper, lower,int(len(df__))]
                 dict_img.update({N_list[n]:env_graph_show(df__,N_list[n],upper,lower)})
                 coding_data = coding_data + code_1day.replace("upper_1day_data",str(upper)).replace("lower_1day_data",str(lower))
+                code_Alert = code_Alert + code_Alert_1day
 
             else:
                 pass
@@ -385,8 +390,22 @@ f = open("files/code_1hour.txt", 'r')
 code_1hour = f.read()
 f = open("files/code_1day.txt", 'r')
 code_1day = f.read()
-f = open("files/code_Alert.txt", 'r')
-code_Alert = f.read()
+
+
+code_Alert_header = '''
+
+// Alert
+'''
+f = open("files/code_Alert_1min.txt", 'r')
+code_Alert_1min = f.read() 
+f = open("files/code_Alert_5min.txt", 'r')
+code_Alert_5min = f.read() 
+f = open("files/code_Alert_15min.txt", 'r')
+code_Alert_15min = f.read() 
+f = open("files/code_Alert_1hour.txt", 'r')
+code_Alert_1hour = f.read() 
+f = open("files/code_Alert_1day.txt", 'r')
+code_Alert_1day = f.read() 
 
 #Google Colab
 # f = open("code_header.txt", 'r')
