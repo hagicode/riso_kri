@@ -662,20 +662,20 @@ if 'submitted' in st.session_state:
     #読み取りだけのもの
     conn = st.connection("gsheets", type=GSheetsConnection) 
     df_all_old = conn.read(spreadsheet=url,index_col=0,header=[0,1])
-    df_all_old = df_all_old.iloc[:,:21]
+    df_all_old = df_all_old.iloc[:,:21].fillna('')
     ##過去データと結合
     #df_all_old = pd.read_csv("files/history.csv",index_col=0, header=[0, 1],encoding = "cp932")
 
     df_all_temp = pd.concat([df_all_old,df_one_data],axis=0)
-    st.write(df_all_temp)
+    #st.write(df_all_temp)
     # st.write(df_all_temp.fillna(''))
     # st.write("one",df_all_temp.iloc[-1].tolist())
     # st.write("all",df_all_temp.iloc[-2].tolist())
-    # if df_all_temp.iloc[-2].tolist() != df_all_temp.iloc[-1].tolist():
-    #     df_all_new = pd.concat([df_all_old,df_one_data],axis=0).fillna('')
-    #     add_row_to_gsheet(gsheet_connector, [[date.strftime('%Y/%m/%d')]+df_all_new.iloc[-1].tolist()])
+    if df_all_temp.iloc[-2].tolist() != df_all_temp.iloc[-1].tolist():
+        df_all_new = pd.concat([df_all_old,df_one_data],axis=0).fillna('')
+        add_row_to_gsheet(gsheet_connector, [[date.strftime('%Y/%m/%d')]+df_all_new.iloc[-1].tolist()])
 
-    # else:
-    #     df_all_new = df_all_old.copy()
+    else:
+        df_all_new = df_all_old.copy()
 
-    # st.write(df_all_new)
+    st.write(df_all_new)
