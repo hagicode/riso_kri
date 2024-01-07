@@ -370,6 +370,12 @@ def coding_process(_symbols,_N_list,_N_true):
 
     return dict_img, df_dev, coding_data
 
+import neologdn
+
+def format_text(text):
+  text = neologdn.normalize(text)
+  return text
+
 #plotlyの白黒を直す。
 pio.templates.default = "plotly"
 
@@ -553,33 +559,40 @@ url = 'https://www.jpx.co.jp/markets/statistics-equities/misc/tvdivq0000001vg2-a
 df_jpx = pd.read_excel(url)
 df_jpx = df_jpx.iloc[:, [1, 2, 3, 9]]
 database = df_jpx[df_jpx["市場・商品区分"] != "ETF・ETN"]
-database = database.astype(str)
+database_org = database.astype(str)
+
+
 
 # # Local
 # url = "/content/drive/MyDrive/master_ColabNotebooks/kabu_files/test_account_files/230719 Env/data_j_202311.xls"
 # df_jpx = pd.read_excel(url)
 # df_jpx = df_jpx.iloc[:, [1, 2, 3, 9]]
 # database = df_jpx[df_jpx["市場・商品区分"] != "ETF・ETN"]
-# database = database.astype(str)
+# database_org = database.astype(str)
 
 
 # 指定した銘柄コードと期間でデータを取得をします。
 # symbols → 個別株・指数のコード
 
+DB_serch = database_org.copy()
+DB_serch["銘柄名"] = [format_text(txt).casefold() for txt in DB_serch["銘柄名"]]
+
 with st.form(key='form1'):
     st.cache_data.clear()
 
     input_txt = st.text_input('銘柄コードを入力 or 部分一致の検索', '8058')
-
-    DB_result = database[(database['コード'].str.contains(str(input_txt)))|(database['銘柄名'].str.contains(str(input_txt)))]
-    st.table(DB_result)
-    if len(DB_result) == 0:
+    format_input = format_text(input_txt).casefold()
+    
+    DB_result = database[(DB_serch['コード'].str.contains(str(format_input)))|(DB_serch['銘柄名'].str.contains(str(format_input)))]
+    db_result_org = database_org.loc[DB_result.index]
+    st.table(db_result_org)
+    if len(db_result_org) == 0:
         st.write("一致する銘柄はありません")
-    if len(DB_result) > 1:
+    if len(db_result_org) > 1:
         st.write("1銘柄になるように入力してください")
-    if len(DB_result) == 1:
-        symbols = DB_result.iloc[0,0]
-        name = DB_result.iloc[0,1]
+    if len(db_result_org) == 1:
+        symbols = db_result_org.iloc[0,0]
+        name = db_result_org.iloc[0,1]
         st.write(f"[・TradingViewで開く](https://jp.tradingview.com/chart/?symbol=TSE%3A{symbols})")
         st.write(f"[・株探で確認する](https://kabutan.jp/stock/chart?code={symbols})")
 
