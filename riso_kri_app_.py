@@ -684,5 +684,3 @@ if 'submitted' in st.session_state:
 
     st.write(df_all_new)
     overwrite_gsheet_with_df(gsheet_connector, df_all_new)
-
-　　
