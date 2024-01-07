@@ -511,7 +511,7 @@ html_code = '''
         <br>　時間足毎にも変わるため注意してください。（例：三菱商事 1/1分割）</dd>
 
 	</dl>
-    <h3><a href="https://note.com/embed/notes/n0e8d873e5b4b" target="_blank" rel="noopener noreferrer">アプリのデモ動画はこちらから見れます。</a></h3>
+    <h3><a href="https://note.com/hagi_code/n/n0e8d873e5b4b" target="_blank" rel="noopener noreferrer">アプリのデモ動画はこちらから見れます。</a></h3>
 
 </div>
 '''
