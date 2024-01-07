@@ -671,7 +671,9 @@ if 'submitted' in st.session_state:
     if (df_all_old.shift(1).iloc[-1] == df_all_old.iloc[-1]).all() : 
         #st.write("True")→Trueになるが行が削除されてない。
         df_all_old2 = df_all_old.iloc[:-1]
-        
+    else:
+        df_all_old2 = df_all_old.copy()
+    
     ##過去データと結合
     #df_all_old = pd.read_csv("files/history.csv",index_col=0, header=[0, 1],encoding = "cp932")
 
