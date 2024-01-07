@@ -667,7 +667,7 @@ if 'submitted' in st.session_state:
     #df_all_old = pd.read_csv("files/history.csv",index_col=0, header=[0, 1],encoding = "cp932")
     if df_all_old.iloc[-1].tolist() != df_one_data.iloc[-1].tolist():
         df_all_new = pd.concat([df_all_old,df_one_data],axis=0)
-        add_row_to_gsheet(gsheet_connector, [df_one_data.loc[0].tolist()])
+        add_row_to_gsheet(gsheet_connector, [df_one_data.iloc[-1].tolist()])
 
     else:
         df_all_new = df_all_old.copy()
