@@ -1,0 +1,4 @@
+
+
+alertcondition(ta.crossover(close, upper_hour), title="1時間足乖離上限", message="1時間足乖離上限")
+alertcondition(ta.crossunder(close, lower_hour), title="1時間足乖離下限", message="1時間足乖離下限")

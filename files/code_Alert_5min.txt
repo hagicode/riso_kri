@@ -1,0 +1,4 @@
+
+
+alertcondition(ta.crossover(close, upper_5min), title="5分足乖離上限", message="5分足乖離上限")
+alertcondition(ta.crossunder(close, lower_5min), title="5分足乖離下限", message="5分足乖離下限")

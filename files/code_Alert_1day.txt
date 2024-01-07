@@ -1,0 +1,4 @@
+
+
+alertcondition(ta.crossover(close, upper_day), title="日足乖離上限", message="日足乖離上限")
+alertcondition(ta.crossunder(close, lower_day), title="日足乖離下限", message="日足乖離下限")
