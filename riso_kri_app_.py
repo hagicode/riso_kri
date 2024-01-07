@@ -135,14 +135,14 @@ def cal_data_min(symbols,chart_type):
 
     #乖離率の買い場・売り場の乖離率を計算し、表示
     m,s = df2["MAER"].mean(),df2["MAER"].std()
-    deviation = (m-2*s)*-1/100
+    std = s
     lower = round((m-2*s),3)
     upper = round((m+2*s),3)
 
-    df2["upper"] = df2["sma25"] + df2["sma25"] * deviation
-    df2["lower"] = df2["sma25"] - df2["sma25"] * deviation
+    df2["upper"] = df2["sma25"] + df2["sma25"] * upper
+    df2["lower"] = df2["sma25"] - df2["sma25"] * lower
 
-    return deviation , upper , lower, df2
+    return std , upper , lower, df2
 
 @st.cache_data
 def env_graph_show(df,chart_type,upper,lower):
