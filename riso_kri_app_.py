@@ -68,12 +68,6 @@ def overwrite_gsheet_with_df(gsheet_connector, df: pd.DataFrame):
     # Convert the DataFrame to a list of lists
     data = df.values.tolist()
 
-    # Clear the existing data in the sheet
-    gsheet_connector.values().clear(
-        spreadsheetId=SHEET_ID,
-        range=SHEET_NAME,
-    ).execute()
-
     # Write the new data to the sheet
     gsheet_connector.values().update(
         spreadsheetId=SHEET_ID,
