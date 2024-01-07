@@ -10,6 +10,7 @@ import plotly.io as pio
 from io import StringIO, BytesIO
 import base64
 import pickle
+from streamlit_gsheets import GSheetsConnection
 
 #株価データを取得し、計算などをするために必要なもの
 from yahoo_finance_api2 import share
@@ -27,6 +28,59 @@ from PIL import ImageDraw
 #日付などの取得
 import time
 import datetime
+
+import google_auth_httplib2
+import httplib2
+import streamlit as st
+from google.oauth2 import service_account
+from googleapiclient.discovery import build
+from googleapiclient.http import HttpRequest
+
+SCOPE = "https://www.googleapis.com/auth/spreadsheets"
+SHEET_ID = "1vXaglvGGbGN0pc8vEjiA7bCPpPTacFxvLGm3iKRVVUw"
+SHEET_NAME = "シート1"
+
+@st.experimental_singleton()
+def connect_to_gsheet():
+    # Create a connection object
+    credentials = service_account.Credentials.from_service_account_info(
+        st.secrets["gcp_service_account"], scopes=[SCOPE]
+    )
+
+    # Create a new Http() object for every request
+    def build_request(http, *args, **kwargs):
+        new_http = google_auth_httplib2.AuthorizedHttp(
+            credentials, http=httplib2.Http()
+        )
+
+        return HttpRequest(new_http, *args, **kwargs)
+
+    authorized_http = google_auth_httplib2.AuthorizedHttp(
+        credentials, http=httplib2.Http()
+    )
+
+    service = build("sheets", "v4", requestBuilder=build_request, http=authorized_http)
+    gsheet_connector = service.spreadsheets()
+
+    return gsheet_connector
+
+def overwrite_gsheet_with_df(gsheet_connector, df: pd.DataFrame):
+    # Convert the DataFrame to a list of lists
+    data = df.values.tolist()
+
+    # Clear the existing data in the sheet
+    gsheet_connector.values().clear(
+        spreadsheetId=SHEET_ID,
+        range=SHEET_NAME,
+    ).execute()
+
+    # Write the new data to the sheet
+    gsheet_connector.values().update(
+        spreadsheetId=SHEET_ID,
+        range=f"{SHEET_NAME}!A1",
+        body=dict(values=data),
+        valueInputOption="USER_ENTERED",
+    ).execute()
 
 
 def cal_data_min(symbols,chart_type):
@@ -601,11 +655,30 @@ if 'submitted' in st.session_state:
     ###④index名をdateに変更する。###
     df_one_data = pd.DataFrame(data=ds.iloc[0].tolist(),index = mult_index).T.rename(index= {0:date})
 
+    ####gsheetからデータ取得###
+    ##https://qiita.com/moomin_moomin/items/bc7a2250313549b2e115
+    ##https://docs.streamlit.io/knowledge-base/tutorials/databases/gcs
+    ##https://teratail.com/questions/ay01ga5mm9tpye
+    ##共有設定後にurlの末尾に/edit?usp=sharingをつける。
+    url = "https://docs.google.com/spreadsheets/d/1vXaglvGGbGN0pc8vEjiA7bCPpPTacFxvLGm3iKRVVUw//edit?usp=sharing"
+
+    # こっちで動作
+    #conn = st.experimental_connection("gsheets", type=GSheetsConnection) 
+
+    # こっちでModuleNotFoundError: No module named 'streamlit_gsheets'が発生
+    #書き込み用
+    gsheet_connector = connect_to_gsheet()
+    
+    #読み取りだけのもの
+    conn = st.connection("gsheets", type=GSheetsConnection) 
+    df_all_old = conn.read(spreadsheet=url,index_col=0,header=[0,1])
+
     ##過去データと結合
-    df_all_old = pd.read_csv("files/history.csv",index_col=0, header=[0, 1],encoding = "cp932")
+    #df_all_old = pd.read_csv("files/history.csv",index_col=0, header=[0, 1],encoding = "cp932")
     if df_all_old.iloc[-1].tolist() != df_one_data.iloc[-1].tolist():
         df_all_new = pd.concat([df_all_old,df_one_data],axis=0)
-        df_all_new.to_csv("files/history.csv",encoding="cp932")
+        
+        overwrite_gsheet_with_df(gsheet_connector, df_all_new)
     else:
         df_all_new = df_all_old.copy()
 
