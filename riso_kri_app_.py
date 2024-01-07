@@ -664,6 +664,11 @@ if 'submitted' in st.session_state:
     df_all_old = conn.read(spreadsheet=url,index_col=0,header=[0,1])
     df_all_old = df_all_old.iloc[:,:22].fillna('')
     df_all_old["銘柄","銘柄コード"] =  df_all_old["銘柄","銘柄コード"].astype("string")
+    
+    #重複してしまった行を消す
+    if (df_all_old.shift(1).iloc[-1] == df_all_old.iloc[-1]).all() : 
+        df_all_old = df_all_old.iloc[:-1]
+        
     ##過去データと結合
     #df_all_old = pd.read_csv("files/history.csv",index_col=0, header=[0, 1],encoding = "cp932")
 
