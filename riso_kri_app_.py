@@ -669,13 +669,13 @@ if 'submitted' in st.session_state:
     # dataframeに直し試すと形式差のエラーでうまく削除できなかった。最終行は消せないが苦肉の策。
     # と思ったが修正できておらず。
     if (df_all_old.shift(1).iloc[-1] == df_all_old.iloc[-1]).all() : 
-        st.write("True")
-        df_all_old = df_all_old.iloc[:-1]
+        #st.write("True")→Trueになるが行が削除されてない。
+        df_all_old2 = df_all_old.iloc[:-1]
         
     ##過去データと結合
     #df_all_old = pd.read_csv("files/history.csv",index_col=0, header=[0, 1],encoding = "cp932")
 
-    df_all_temp = pd.concat([df_all_old,df_one_data],axis=0).fillna('')
+    df_all_temp = pd.concat([df_all_old2,df_one_data],axis=0).fillna('')
     
     #st.write(df_all_temp)
     # st.write(df_all_temp.fillna(''))
@@ -685,10 +685,10 @@ if 'submitted' in st.session_state:
     # 別処理を検討
     
     if df_all_temp.iloc[-2,:].tolist() != df_all_temp.iloc[-1,:].tolist():
-        df_all_new = pd.concat([df_all_old,df_one_data],axis=0).fillna('')
+        df_all_new = pd.concat([df_all_old2,df_one_data],axis=0).fillna('')
         add_row_to_gsheet(gsheet_connector, [[date.strftime('%Y/%m/%d')]+df_all_new.iloc[-1].tolist()])
 
     else:
-        df_all_new = df_all_old.copy()
+        df_all_new = df_all_old2.copy()
 
     #st.write(df_all_new)
